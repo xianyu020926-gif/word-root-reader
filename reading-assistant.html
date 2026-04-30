@@ -55,6 +55,80 @@ button:hover{background:#0056b3}
 #popup-card .hook{font-style:italic;background:#f9f9f9;padding:10px;border-left:4px solid #007bff;margin:10px 0;border-radius:0 6px 6px 0}
 #popup-card .variants{font-size:0.78em;color:#999;margin-top:6px}
 .close-hint{font-size:0.7em;color:#ccc;text-align:right;margin-top:6px}
+.close-hint{font-size:0.7em;color:#ccc;text-align:right;margin-top:6px}
+
+/* ======== 移动端适配 ======== */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    #input-panel {
+        width: 100%;
+        max-height: 30vh;
+        border-bottom: 1px solid #ddd;
+        box-shadow: none;
+        padding: 10px;
+        gap: 6px;
+    }
+    
+    #input-panel h2 {
+        font-size: 0.95em;
+    }
+    
+    #input-panel p {
+        font-size: 0.7em;
+    }
+    
+    textarea {
+        flex: none;
+        min-height: 80px;
+        max-height: 15vh;
+    }
+    
+    button {
+        min-height: 40px;
+        font-size: 14px;
+    }
+    
+    #reading-panel {
+        padding: 12px 10px;
+        font-size: 15px;
+        line-height: 1.9;
+    }
+    
+    .word {
+        padding: 2px 4px;
+    }
+    
+    #popup-card {
+        width: 94vw;
+        max-width: 94vw;
+        left: 3vw !important;
+        right: 3vw !important;
+        top: auto !important;
+        bottom: 10px !important;
+        border-radius: 16px 16px 0 0;
+        padding: 14px;
+    }
+    
+    #popup-card .word-title {
+        font-size: 1.1em;
+    }
+    
+    #popup-card .meaning {
+        font-size: 0.85em;
+    }
+    
+    #popup-card .hook {
+        font-size: 0.85em;
+    }
+    
+    .close-hint {
+        font-size: 0.75em;
+    }
+}
+</style>
 </style>
 </head>
 <body>
