@@ -1,6 +1,5 @@
 const CACHE_NAME = 'word-root-reader-v1';
 const urlsToCache = [
-  '/word-root-reader/',
   '/word-root-reader/reading-assistant.html',
   '/word-root-reader/manifest.json',
   '/word-root-reader/icon-192.png',
