@@ -149,7 +149,10 @@ button.stop:hover{background:#b02a37}
 <div id="reading-panel" onclick="hidePopup()"><p class="placeholder">← 粘贴文本后，点击左侧按钮开始</p></div>
 </div>
 <div id="popup-card" onclick="event.stopPropagation()">
-<div class="word-title" id="popup-word"></div>
+<div class="word-title">
+  <span id="popup-word"></span>
+  <button class="speak-word-btn" id="popup-speak-btn" title="朗读这个单词">🔊</button>
+</div>
 <div class="pos" id="popup-pos"></div>
 <div class="meaning" id="popup-meaning"></div>
 <div id="popup-breakdown" style="font-size:0.9em;color:#555;margin-bottom:8px"></div>
@@ -269,32 +272,40 @@ function toggleSpeak() {
     return;
   }
   
-  const panel = document.getElementById('reading-panel');
-  const words = panel.querySelectorAll('.word');
-  if (words.length === 0) {
-    alert('请先点击“开始阅读”生成文章');
+  // 获取输入的文章内容
+  const textSource = document.getElementById('text-input').value.trim();
+  if (!textSource) {
+    alert('请先在输入框里粘贴文章');
     return;
   }
   
-  speakQueue = [];
-  words.forEach(w => speakQueue.push(w.textContent));
-  currentQueueIndex = 0;
+  // 按句子分割（根据句号、问号、感叹号）
+  const sentences = textSource.split(/(?<=[.!?])\s+/);
+  if (sentences.length === 0) return;
+  
   isSpeaking = true;
   btn.textContent = '⏹ 停止朗读';
   btn.classList.add('stop');
   
-  speakNext();
-  function speakNext() {
-    if (!isSpeaking || currentQueueIndex >= speakQueue.length) {
+  let idx = 0;
+  function speakNextSentence() {
+    if (!isSpeaking || idx >= sentences.length) {
       isSpeaking = false;
       btn.textContent = '🔊 朗读文章';
       btn.classList.remove('stop');
       return;
     }
-    const word = speakQueue[currentQueueIndex];
-    currentQueueIndex++;
-    speakText(word, () => { setTimeout(speakNext, 150); });
+    const sentence = sentences[idx];
+    idx++;
+    if (sentence.trim() === '') {
+      speakNextSentence();
+      return;
+    }
+    speakText(sentence.trim(), () => {
+      setTimeout(speakNextSentence, 250); // 句子之间停一小会儿
+    });
   }
+  speakNextSentence();
 }
 
 // 注入单词朗读按钮事件
