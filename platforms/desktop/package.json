@@ -1,0 +1,40 @@
+{
+  "name": "single-point-word-learning",
+  "version": "0.15.0",
+  "description": "A focused English vocabulary learning desktop app",
+  "main": "main.js",
+  "author": "Word Root Reader",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable --x64"
+  },
+  "build": {
+    "appId": "com.wordrootreader.singlepoint",
+    "productName": "单点穿透词汇学习",
+    "asar": true,
+    "electronDist": "node_modules/electron/dist",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.html",
+      "learning.js",
+      "learning-support.js",
+      "learning-updates.css",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "artifactName": "单点穿透词汇学习-${version}.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.2.0",
+    "electron-builder": "^26.15.3"
+  }
+}
