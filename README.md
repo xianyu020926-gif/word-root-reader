@@ -43,6 +43,10 @@ npm run dev
 - Android：`cd platforms/android && npm ci && npm run build:apk`
 - GitHub 的“Actions → Build installable apps”可自动生成 Windows 与 Android 安装包。
 
+## 腾讯云轻量服务器
+
+已提供适配 Ubuntu 22.04 的独立 Node 运行层、Docker Compose、Caddy 自动 HTTPS 和健康检查。部署文件与安全说明见 [腾讯云部署](deploy/tencent-vps/README.md)。服务器密钥只写入被 Git 忽略的 `.env`，不进入前端或仓库。
+
 ## 项目边界
 
 - GitHub 保存源码、版本和自动测试，不承载服务器密钥。

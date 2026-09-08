@@ -17,6 +17,7 @@ local.properties
 .env*
 !.env.example
 .openai/hosting.json
+deploy/tencent-vps/.env
 platforms/android/android/app/src/main/assets/public/
 platforms/android/android/app/src/main/assets/capacitor.*.json
 platforms/android/android/app/src/main/res/xml/config.xml
