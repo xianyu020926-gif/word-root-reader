@@ -1,0 +1,13 @@
+{
+  "appId": "com.wordrootreader.singlepoint",
+  "appName": "单点穿透词汇学习",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "CapacitorHttp": {
+      "enabled": true
+    }
+  }
+}

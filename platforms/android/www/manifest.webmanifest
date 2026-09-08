@@ -1,0 +1,17 @@
+{
+  "name": "单点穿透词汇学习",
+  "short_name": "单点穿透",
+  "description": "文章语境、词根结构与集中复习结合的英语词汇学习工具。",
+  "id": "/mobile.html",
+  "start_url": "/mobile.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f2f0ea",
+  "theme_color": "#245f58",
+  "lang": "zh-CN",
+  "icons": [
+    {"src":"/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}

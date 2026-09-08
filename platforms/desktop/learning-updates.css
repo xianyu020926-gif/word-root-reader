@@ -1,0 +1,31 @@
+[hidden]{display:none!important}
+.resume-panel{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px;padding:13px 15px;border:1px solid #b4d2c9;border-radius:12px;background:#edf7f4;font-size:14px}
+.resume-panel button{flex-shrink:0}
+.storage-warning{background:#fff0d6;border:1px solid #d5a669;padding:12px 20px;color:#703c18;font-size:14px}
+.backup-tools{padding:16px 20px;border-bottom:1px solid var(--line)}
+.backup-tools p{font-size:12px;color:var(--muted);margin:9px 0 0}
+.chosen small{font:11px/1.5 system-ui,sans-serif;color:var(--muted);white-space:nowrap;margin-left:8px}
+.book-copy{min-width:0}.book-meaning,.book-meta,.book-context{overflow-wrap:anywhere}
+.book-word{overflow-wrap:anywhere}
+.book-details{border-top:1px solid var(--line);margin-top:12px;padding-top:10px;font-size:13px}
+.book-details>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:3px 0}
+.book-details .book-structure{margin:12px 0;font-size:14px;overflow-wrap:anywhere}
+.root-links{display:flex;gap:6px;flex-wrap:wrap}.root-link{font-size:12px;font-weight:500;padding:5px 9px}
+.book-context{margin:12px 0;padding:13px 15px;background:#f4f8f4;border-left:3px solid #9bbeb0;border-radius:0 8px 8px 0}
+.book-context small{color:var(--muted)}.book-context p{font:17px/1.8 Georgia,serif;margin:8px 0;white-space:pre-wrap}
+.book-context-zh{font-size:13px;color:#605d55;line-height:1.8}.book-context button{margin-top:10px;font-size:12px}
+.book-remove{margin-top:12px;padding:6px 10px;font-size:12px}
+#resumeReview{margin:12px 20px 0;width:calc(100% - 40px);text-align:left}
+@media(max-width:520px){.book-main{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}.book-actions{gap:6px}.book-actions button{padding:6px 10px;min-height:38px}.book-word{font-size:23px}.wordbook-tools{grid-template-columns:1fr}.book-context{padding:10px}}
+.family summary{cursor:pointer;padding:4px 0}
+.teacher-response{overflow-wrap:anywhere}
+#teacherHistory details{margin-top:10px;border-top:1px solid var(--line);padding-top:8px;font-size:12px}
+#teacherHistory summary{font-weight:500;white-space:pre-wrap;overflow-wrap:anywhere}
+#speechRate{background:transparent;border:1px solid var(--line);border-radius:9px;color:var(--muted);padding:7px 5px;font:12px system-ui,sans-serif;max-width:130px}
+#aiStatus{flex-basis:100%;overflow-wrap:anywhere;line-height:1.6}
+.original-column p{white-space:pre-wrap}
+.word-focus .article .parallel-row{opacity:.48}
+.word-focus .article .sentence{opacity:.65}
+.word-focus .article .parallel-row.active-row,.word-focus .article .sentence.active-context{opacity:1}
+@media(min-width:901px) and (max-width:1150px){.shell{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:12px}.shell aside{position:sticky;top:80px;margin-top:0}.article{padding:15px}.parallel-row,.parallel-head{gap:12px}.paragraph-translation{padding-left:10px;font-size:13px}.article{font-size:17px}}
+@media(max-width:900px){.article #popover{white-space:normal;font:14px/1.65 system-ui,sans-serif;margin:8px 0 14px;padding:12px;border:1px solid #bfd6d1;border-radius:10px;background:#fffdf8}.article #popover .pop-word b{font-size:22px}.article #popover .pop-actions button{min-height:42px}.word-list{max-height:240px}.study-nav{position:sticky;bottom:-22px;background:var(--paper);padding:12px 0;margin-top:18px}.study-nav button{min-height:44px}.resume-panel{padding:10px;gap:8px;font-size:13px}.archive-entry{align-items:flex-start;flex-wrap:wrap}.archive-actions{margin-left:auto}.header-right button{min-height:36px}.sentence-translation{white-space:normal}}
