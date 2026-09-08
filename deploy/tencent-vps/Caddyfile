@@ -1,0 +1,7 @@
+{$APP_HOST::80} {
+  encode zstd gzip
+  basic_auth {
+    {$APP_AUTH_USER} {$APP_AUTH_HASH}
+  }
+  reverse_proxy app:3000
+}

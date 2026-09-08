@@ -11,7 +11,8 @@
     "dev": "node scripts/run-vinext.mjs dev",
     "build": "node scripts/run-vinext.mjs build",
     "start": "node scripts/run-vinext.mjs start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/offline-cache.test.mjs tests/api-contract.test.mjs",
+    "start:vps": "node server/vps-server.mjs",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/offline-cache.test.mjs tests/api-contract.test.mjs tests/vps-server.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
   },
