@@ -1,13 +1,39 @@
 services:
+  init-data:
+    image: alpine:3.22
+    command: ["sh", "-c", "chown -R 1000:1000 /data"]
+    restart: "no"
+    volumes:
+      - app_data:/data
+
   app:
     build:
       context: ../..
       dockerfile: deploy/tencent-vps/Dockerfile
     restart: unless-stopped
+    depends_on:
+      init-data:
+        condition: service_completed_successfully
     environment:
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY}
       DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-v4-flash}
+      APP_DATA_FILE: /data/app-store.json
+      APP_SESSION_SECRET: ${APP_SESSION_SECRET:?APP_SESSION_SECRET is required}
+      APP_INVITE_CODE: ${APP_INVITE_CODE:?APP_INVITE_CODE is required}
+      INITIAL_OWNER_USERNAME: ${INITIAL_OWNER_USERNAME:-owner}
+      INITIAL_OWNER_PASSWORD: ${INITIAL_OWNER_PASSWORD:?INITIAL_OWNER_PASSWORD is required}
+    volumes:
+      - app_data:/data
     networks: [internal]
+
+  backup:
+    image: alpine:3.22
+    restart: unless-stopped
+    depends_on: [app]
+    command: ["sh", "-c", "until [ -f /data/app-store.json ]; do sleep 10; done; while true; do stamp=$$(date -u +%Y%m%d-%H%M%S); cp /data/app-store.json /backups/app-store-$$stamp.json; find /backups -type f -name 'app-store-*.json' -mtime +14 -delete; sleep 86400; done"]
+    volumes:
+      - app_data:/data:ro
+      - app_backups:/backups
 
   caddy:
     image: caddy:2.10-alpine
@@ -15,8 +41,6 @@ services:
     depends_on: [app]
     environment:
       APP_HOST: ${APP_HOST:-:80}
-      APP_AUTH_USER: ${APP_AUTH_USER}
-      APP_AUTH_HASH: ${APP_AUTH_HASH}
     ports:
       - "80:80"
       - "443:443"
@@ -31,5 +55,7 @@ networks:
   internal:
 
 volumes:
+  app_data:
+  app_backups:
   caddy_data:
   caddy_config:

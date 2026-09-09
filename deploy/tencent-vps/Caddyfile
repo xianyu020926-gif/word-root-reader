@@ -1,7 +1,10 @@
 {$APP_HOST::80} {
   encode zstd gzip
-  basic_auth {
-    {$APP_AUTH_USER} {$APP_AUTH_HASH}
+  header {
+    Strict-Transport-Security "max-age=15552000"
+    X-Content-Type-Options "nosniff"
+    Referrer-Policy "same-origin"
+    -Server
   }
   reverse_proxy app:3000
 }

@@ -1,4 +1,4 @@
-import { copyFileSync, readFileSync } from 'node:fs';
+import { copyFileSync, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,13 +10,15 @@ const pairs = [
     [`platforms/desktop/${file}`, `platforms/android/www/${file}`],
   ]),
   ['public/mobile-bridge.js', 'platforms/android/www/mobile-bridge.js'],
+  ['public/cloud-account.js', 'platforms/android/www/cloud-account.js'],
+  ['public/cloud-account.css', 'platforms/android/www/cloud-account.css'],
   ['public/mobile.html', 'platforms/android/www/index.html'],
 ];
 
 let stale = false;
 for (const [source, target] of pairs) {
   const from = path.join(root, source), to = path.join(root, target);
-  if (readFileSync(from).equals(readFileSync(to))) continue;
+  if (existsSync(to) && readFileSync(from).equals(readFileSync(to))) continue;
   stale = true;
   if (!checkOnly) copyFileSync(from, to);
   else console.error(`需要同步：${target}`);

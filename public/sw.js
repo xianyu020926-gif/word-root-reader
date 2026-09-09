@@ -1,5 +1,5 @@
-const CACHE = 'single-point-v10';
-const STATIC = ['/mobile.html','/mobile-bridge.js','/learning.js','/learning-support.js','/learning-updates.css','/manifest.webmanifest','/icon-192.png','/icon-512.png'];
+const CACHE = 'single-point-v11';
+const STATIC = ['/mobile.html','/mobile-bridge.js','/cloud-account.js','/cloud-account.css','/learning.js','/learning-support.js','/learning-updates.css','/manifest.webmanifest','/icon-192.png','/icon-512.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {

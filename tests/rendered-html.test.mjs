@@ -20,7 +20,7 @@ test("root sends the learner to the mobile application", async () => {
 });
 
 test("mobile build contains the complete vocabulary-learning path", async () => {
-  const [markup, bridge, serviceWorker, manifest, apiRoute, learning, support] = await Promise.all([
+  const [markup, bridge, serviceWorker, manifest, apiRoute, learning, support, account] = await Promise.all([
     readFile(new URL("../public/mobile.html", import.meta.url), "utf8"),
     readFile(new URL("../public/mobile-bridge.js", import.meta.url), "utf8"),
     readFile(new URL("../public/sw.js", import.meta.url), "utf8"),
@@ -28,6 +28,7 @@ test("mobile build contains the complete vocabulary-learning path", async () => 
     readFile(new URL("../app/api/deepseek/route.ts", import.meta.url), "utf8"),
     readFile(new URL("../public/learning.js", import.meta.url), "utf8"),
     readFile(new URL("../public/learning-support.js", import.meta.url), "utf8"),
+    readFile(new URL("../public/cloud-account.js", import.meta.url), "utf8"),
   ]);
   const html = markup + learning + support;
 
@@ -67,7 +68,10 @@ test("mobile build contains the complete vocabulary-learning path", async () => 
   assert.match(html, /articleArchive\[articleId\(ps\)\]/);
   assert.match(apiRoute, /structure_confidence/);
   assert.match(apiRoute, /sentence\.sentence_index/);
-  assert.match(serviceWorker, /single-point-v10/);
+  assert.match(serviceWorker, /single-point-v11/);
+  assert.match(markup, /cloud-account\.js/);
+  assert.match(account, /api\/auth\/\$\{mode\}/);
+  assert.match(account, /api\/sync/);
   assert.equal(JSON.parse(manifest).display, "standalone");
 
   const inline = [...html.matchAll(/<script(?: [^>]*)?>([\s\S]*?)<\/script>/g)]
@@ -76,4 +80,5 @@ test("mobile build contains the complete vocabulary-learning path", async () => 
   new Function(bridge);
   new Function(learning);
   new Function(support);
+  new Function(account);
 });
